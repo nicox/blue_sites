@@ -1,0 +1,27 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Security Checks</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+ 
+ 
+  {% endfor %}
+  {% block content %}{% endblock %}
+     
+    {{ table | safe }}
+    <h1>HTTPS Security checks</h1>
+    <a href="./header">   Header checks, all sites</a> {{headerlinks | safe }}<br>
+    <a href="./ssllabs">   SSLlabs checks, all sites</a >{{ssllabslinks| safe}}<br>
+    <a href="./ipchecks">   IP checks, all groups</a >{{ipchecklinks| safe}}<br>
+
+    <br><br><br>
+    <a href="/add">Add a new Site</a><br>
+    <a href="/addip4">Add new IPs</a><br>
+    <br><br>
+</section>
